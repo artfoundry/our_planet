@@ -1,0 +1,16 @@
+<% if @post %>
+  <form action="/<%= @post.id %>" method="post" id="edit">
+    <input type="hidden" name="_method" value="put">
+    <h2>Title:</h2>
+    <textarea id="title" name="title"><%= @post.title %></textarea>
+    <h3>Text:</h3>
+    <textarea id="textarea" name="text"><%= @post.text %></textarea>
+    <br>
+    <input type="submit">
+    <input type="button" onclick="location.href = '/<%= @post.id %>/delete'" value="Delete">
+    <input type="button" onclick="history.back(-1)" value="Cancel">
+  </form>
+<% else %>
+  <p>Sorry, post not found.</p>
+<% end %>
+

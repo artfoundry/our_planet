@@ -1,0 +1,25 @@
+
+
+body {
+  background-color: white;
+  color: black;
+  a:link {color:blue;}
+  a:visited {color:purple;}
+}
+
+#textarea
+  {
+    border-style:ridge;
+    border-width:3px;
+    height: 50px;
+    width: 510px;
+    padding: 10px;
+  }
+#title
+  {
+    border-style:ridge;
+    border-width:3px;
+    height: 20px;
+    width: 510px;
+    padding: 10px;
+  }

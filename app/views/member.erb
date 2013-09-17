@@ -1,0 +1,23 @@
+<h1>Welcome to <%= member.first_name %>'s Territory of OurPlanet&#153!</h1>
+
+<h2>
+  <form action="/" method="post">
+    Title:<br>
+    <textarea id="title" name="title"></textarea>
+    <br>
+    Post content:<br>
+    <textarea id="textarea" name="text"></textarea>
+    <br>
+    <input type="submit" value="Make it rain!" />
+  </form>   
+</h2>
+
+<% @posts.each do |post| %>
+    <h2><%= post.title %></h2>
+    <h3><%= post.text %></h3>
+    <span><a href = "/<%= post.id %>">[Edit]</a></span>
+    <span><a href = "/<%= post.id %>/delete">[Delete]</a></span>
+    <span><%= format_time(post.created_at) %></span>
+    <hr width=50% align=left>
+<% end %>
+
