@@ -1,0 +1,38 @@
+<h1><%= heading %></h1>
+<h2>SIGNUP for OUR PLANET!!</h2>
+<h3>We promise we don't save your password</h3>
+<% if flash[:passworderror] %>  
+    <p class="error"><%= flash[:passworderror] %>  
+<% end %><br>
+<img src="http://static.comicvine.com/uploads/original/3/36657/1637468-planeteer_pic2.gif">
+  <form action="/signup" method="post">
+  <table>
+    <tr>
+      <td>First Name:</td>
+      <td><input type="text" name="firstname">
+      </td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td><input type="text" name="lastname"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="email">
+      </td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type="password" name="password"></td>
+    </tr>
+       <tr>
+      <td>Confirm password:</td>
+      <td><input type="password" name="password2"></td>
+    </tr>
+
+  </table>
+  <input type="submit" value="Sign up">
+</form>
+<br>
+   
+  

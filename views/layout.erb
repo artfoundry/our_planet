@@ -1,11 +1,13 @@
 
 <html>
-<head>
-  <link href="/style.css" rel="stylesheet">
+
   <title><%= title %></title>
   <% puts request.inspect %>
 </head>
 <body>
+  <head>
+  <link href="/style.css" rel="stylesheet">
+  <end %>
   <%= yield %>
 </body>
 </html>

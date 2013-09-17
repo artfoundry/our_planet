@@ -1,7 +1,9 @@
 require_relative '../../db/config'
 
-class Post < ActiveRecord::Base
-  
+class User < ActiveRecord::Base
+
+
+
 end
 
 

@@ -1,0 +1,26 @@
+  <h1><%= heading %></h1>
+<h2>LOGIN NOW!!</h2>
+<% if flash[:error] %>  
+    <p class="error"><%= flash[:error] %>  
+<% end %><br>
+<img src="http://static.tvtropes.org/pmwiki/pub/images/captain-planet2_8052.jpg">
+  <form action="/" method="post">
+  <table>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="email">
+      </td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input type="password" name="password"></td>
+    </tr>
+  </table>
+  <input type="submit" value="LOG ME IN NOW">
+</form>
+  <p>
+    or <a href="/signup">sign up</a>.
+    <p>
+      or <h2><a href="http://www.cornify.com" onclick="cornify_add();return false;">CORNIFY ME</a><script type="text/javascript" src="http://www.cornify.com/js/cornify.js">.</script>
+
+

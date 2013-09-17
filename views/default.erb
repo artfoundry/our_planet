@@ -1,7 +1,11 @@
-<h1>Welcome to Jon and Nishant's planet!</h1>
+<h1><%= heading %></h1>
+<h2>Save shit. Go Green.</h2>
+<% if flash[:success] %>  
+    <p class="error"><%= flash[:success] %>  
+<% end %><br>
 <ul>
-  <form action="/" method="post">
-  <textarea name="text" rows="5"></textarea>
+  <form action="/home" method="post">
+  <textarea name="text"></textarea>
   <br />
  
   <input type="submit" value="Post" />
