@@ -1,8 +1,13 @@
 <h1><%= heading %></h1>
 <h2>Save shit. Go Green.</h2>
+<center><h1>
 <% if flash[:success] %>  
-    <p class="error"><%= flash[:success] %>  
-<% end %><br>
+    <p class="success"><%= flash[:success] %>  
+<% end %>
+<% if flash[:welcome] %>  
+    <p class="success"><%= flash[:welcome] %>  
+  
+<% end %></h1></center><br>
 <ul>
   <form action="/home" method="post">
   <textarea name="text"></textarea>

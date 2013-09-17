@@ -33,6 +33,8 @@ post '/' do
     flash[:error] = "Invalid login information."
     redirect '/'
   elsif params[:password] == User.find_by_email(params[:email]).password
+    u = User.find_by_email(params[:email])
+    flash[:welcome] = "Welcome back #{u.firstname}!"
     redirect '/home'
   else
     flash[:error] = "Invalid login information."
