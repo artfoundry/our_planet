@@ -1,0 +1,12 @@
+
+textarea {
+  height: 50px;
+  width: 510px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+body {
+  background-color: blue;
+  color: white;
+}

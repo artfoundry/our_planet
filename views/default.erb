@@ -1,0 +1,18 @@
+<h1>Welcome to Jon and Nishant's planet!</h1>
+<ul>
+  <form action="/" method="post">
+  <textarea name="text" rows="5"></textarea>
+  <br />
+ 
+  <input type="submit" value="Post" />
+</form>   
+<% @posts.each do |post| %>
+  <li>
+    <h2>
+      <%= post.text %>
+    <span><%= format_time(post.created_at) %></span>
+    </h2>
+  </li>
+<% end %>
+</ul> 
+
