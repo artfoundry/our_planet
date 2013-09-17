@@ -29,10 +29,13 @@ get "/" do
 end
 
 post '/' do
-if params[:password] == User.find_by_email(params[:email]).password
+  if User.find_by_email(params[:email]) == nil
+    flash[:error] = "Invalid login information."
+    redirect '/'
+  elsif params[:password] == User.find_by_email(params[:email]).password
     redirect '/home'
   else
-    flash[:error] = "Wrong password."
+    flash[:error] = "Invalid login information."
     redirect '/'
   end
 end
@@ -43,7 +46,6 @@ get "/signup" do
 end
 
 post '/signup' do
-  # if params[:password] == params[:password2]
      User.create(firstname: params[:firstname], lastname: params[:lastname], email: params[:email], password: params[:password])
     if params[:password] == params[:password2]
       flash[:success] = "Successfully signed up!"
