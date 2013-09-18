@@ -44,18 +44,18 @@ end
 
 
 get "/signup" do
+  @user = User.new
   erb :signup
 end
 
 post '/signup' do
-     User.create(firstname: params[:firstname], lastname: params[:lastname], email: params[:email], password: params[:password])
-    if params[:password] == params[:password2]
-      flash[:success] = "Successfully signed up!"
-      redirect '/home'
-   else
-     flash[:passworderror] = "Passwords don't match!"
-      redirect '/signup'
-   end
+  @user = User.create(firstname: params[:firstname], lastname: params[:lastname], email: params[:email], password: params[:password])
+  if @user.valid? && params[:password] == params[:password2]
+    flash[:success] = "Successfully signed up!"
+    redirect '/home'
+  else
+    erb :signup
+  end
 end
 
 get '/home' do
