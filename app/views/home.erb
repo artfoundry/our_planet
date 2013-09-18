@@ -1,5 +1,5 @@
 <center><h1>OurPlanet&trade;</h1>
-  User's Name!
+  <%= session['username'] || 'You should log in now!' %>
   <h3>This will be the feed for a user who is logged in</h3>
   <a href = "/login">What does Login do?</a>
 </center>
