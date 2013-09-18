@@ -15,7 +15,7 @@ set :database, "sqlite3:///db/members.db"
 
 member = Member.create(first_name: "Bruno")
 member2 = Member.create(first_name: "Kiera")
-friendship = Friendship.create(member_id: 1, friend_id: 2)
+friendship = Friendship.create(member_id: member.id, friend_id: member2.id)
 
 p member.id
 p member2.id
@@ -35,7 +35,7 @@ describe 'friends' do
   end
 
   it "member 2 should be friends with member 1" do
-    Friendship.where('member_id = ?', 1).friend_id == member2.id
+    Friendship.where('member_id = ?', 1).take.friend_id == member2.id
   end
 
 end
