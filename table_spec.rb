@@ -1,5 +1,5 @@
-require_relative 'models/friendship'
-require_relative 'models/member'
+require_relative 'app/models/friendship'
+require_relative 'app/models/member'
 require 'sinatra/activerecord'
 require 'sinatra'
 require 'shoulda-matchers'
