@@ -44,9 +44,29 @@ post '/logout' do
   redirect '/login'
 end
 
-get '/:id' do
+get '/user/:id/othermembers' do #show all unfriended friends
   @members = Member.all
   erb :requests
+end
+
+post '/user/:id/othermembers' do
+  Friendship.create(member_id: params[:id], friend_id: params[:friend_id], accepted?: false)
+  redirect "/user/#{params[:id]}/othermembers"
+end
+
+get '/user/:id/friends' do #show confirmed and pending friends
+  @members = Member.all
+  erb :friends
+end
+
+post '/user/:id/friends' do 
+  # friendship = Friendship.where(:member_id => params[:id], :friend_id => params[:friend_id]).take
+  # unless friendship != nil
+    friendship = Friendship.where(:member_id => params[:friend_id], :friend_id => params[:id]).take
+  # end
+  friendship.update_attributes(:accepted? => "true")
+  friendship.save
+  redirect "/user/#{params[:id]}/friends"
 end
 
 helpers do 
