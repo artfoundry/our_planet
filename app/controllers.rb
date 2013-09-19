@@ -1,5 +1,5 @@
 require 'sinatra'
-require './app'
+require_relative './config'
 
 enable :sessions
 
