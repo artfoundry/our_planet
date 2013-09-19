@@ -8,10 +8,6 @@ class CreateFriendships < ActiveRecord::Migration
     end
   end
 
-  def init
-    self.accepted? = false
-  end
-
   def down
     drop_table :friendships
   end

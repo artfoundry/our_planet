@@ -1,6 +1,6 @@
-require './app'
-require_relative 'app/models/friendship'
-require_relative 'app/models/member'
+require_relative '../app/app'
+require_relative '../app/models/friendship'
+require_relative '../app/models/member'
 require 'sinatra/activerecord'
 require 'sinatra'
 require 'rack/test'
@@ -42,17 +42,21 @@ end
 
 describe 'friend request page' do
   it 'should show unfriended friends' do
-    get "/"
-    expect(last_response).to include member3.first_name
+    get "/#{member.id}"
+    expect(last_response.body).to include("#{member3.first_name}")
   end
 
   it 'should not show yourself' do 
+    get "/#{member3.id}"
+    expect(last_response.body).to_not include("#{member3.first_name}")
   end
 
   it 'should not show current friends' do
+    get "/#{member.id}"
+    expect(last_response.body).to_not include("#{member2.first_name}")
   end
 
-  it 'should show pending friendships' do
+  it "should show friendships you haven't accepted yet" do
   end
 end
 
