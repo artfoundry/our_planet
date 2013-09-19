@@ -15,5 +15,9 @@ class Member < ActiveRecord::Base
       return true if friendship.member_id == potential_friend.id
     end
     false
-  end  
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
