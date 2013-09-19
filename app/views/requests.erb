@@ -1,0 +1,12 @@
+<% possible_friends = [] %>
+
+<% @members.each do |member| %>
+  <% unless member.id == params[:id].to_i %> 
+    <% possible_friends << member%>
+  <% end %>
+<% end %>
+
+
+<% possible_friends.each do |friend| %>
+<%= friend.first_name %><br>
+<% end %>
