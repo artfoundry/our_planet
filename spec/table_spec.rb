@@ -1,8 +1,4 @@
-require_relative '../app/config'
-require_relative '../app/models/friendship'
-require_relative '../app/models/member'
-require 'sinatra/activerecord'
-require 'sinatra'
+require 'spec_helper'
 require 'rack/test'
 
 include Rack::Test::Methods
