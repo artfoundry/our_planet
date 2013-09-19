@@ -1,4 +1,4 @@
-require_relative '../app/app'
+require_relative '../app/config'
 require_relative '../app/models/friendship'
 require_relative '../app/models/member'
 require 'sinatra/activerecord'

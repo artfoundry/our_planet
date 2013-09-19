@@ -1,5 +1,5 @@
 require 'sinatra'
-require './app'
+require_relative './config'
 
 enable :sessions
 
@@ -30,6 +30,11 @@ end
 post '/login' do
   session['username'] = params[:email]
   redirect '/home'
+end
+
+get '/:id' do
+  @members = Member.all
+  erb :requests
 end
 
 helpers do 
