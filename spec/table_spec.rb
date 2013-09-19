@@ -52,7 +52,8 @@ describe 'friend request page' do
   end
 
   it 'should not show current friends' do
-    
+    get "/#{member.id}"
+    expect(last_response.body).to_not include("#{member2.first_name}")
   end
 
   it 'should show pending friendships' do
