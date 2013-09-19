@@ -1,11 +1,11 @@
 <center><h1>OurPlanet&trade;</h1>
-  <% if session['member'] %>
-    <%= "#{session['member'].full_name}" %>
+  <% if current_member %>
+    <%= "#{current_member.full_name}" %>
   <% else %>
-    <%= 'You should log in now!' %>
+    <%= 'You should <a href="/login">log in</a> now!' %>
   <% end %>
   <h3>This will be the feed for a user who is logged in</h3>
-  <a href = "/login">What does Login do?</a>
-  <br>
-  <a href = "/logout">Log me out!</a>
+  <% if current_member %>
+    <a href = "/logout">Log me out!</a>
+  <% end %>
 </center>

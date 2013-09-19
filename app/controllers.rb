@@ -13,10 +13,13 @@ get '/member/new' do
 end
 
 post '/member/create' do
-  member = Member.new(params)
-  set_member_session(member)
-  redirect '/member/new' unless member.errors.empty?
-  redirect '/home'
+  member = Member.create(params)
+  if member
+    set_member_session(member.id)
+    redirect '/home'
+  else
+    redirect '/member/new'
+  end
 end
 
 get '/home' do
@@ -28,8 +31,8 @@ get '/login' do
 end
 
 post '/login' do
-  current_member = Member.find_by email: params[:email]
-  set_member_session(current_member) if current_member
+  member = Member.find_by email: params[:email]
+  set_member_session(member.id) if member
   redirect '/home'
 end
 
@@ -52,7 +55,14 @@ helpers do
     "Our Planet"
   end
 
-  def set_member_session(member)
-    session['member'] = member 
+  def set_member_session(member_id)
+    session['member_id'] = member_id 
+  end
+
+  def current_member
+    if session['member_id']
+      @member ||= Member.find(session['member_id'])
+    end
+    # returns nil if session is empty
   end
 end
