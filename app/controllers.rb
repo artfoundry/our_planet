@@ -19,18 +19,27 @@ post '/member/create' do
   redirect '/home'
 end
 
-get '/login' do
-  erb :login
-end
-
 get '/home' do
   erb :home
 end
 
+get '/login' do
+  erb :login
+end
+
 post '/login' do
-  current_member = Member.find(email: params[:email])
+  current_member = Member.find_by email: params[:email]
   set_member_session(current_member) if current_member
   redirect '/home'
+end
+
+get '/logout' do
+  erb :logout
+end
+
+post '/logout' do
+  set_member_session(nil)
+  redirect '/login'
 end
 
 get '/:id' do
