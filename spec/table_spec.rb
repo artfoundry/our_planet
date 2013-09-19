@@ -1,11 +1,4 @@
 require 'spec_helper'
-require 'rack/test'
-
-include Rack::Test::Methods
-
-def app
-  Sinatra::Application
-end
 
 set :database, "sqlite3:///db/members.db"
 

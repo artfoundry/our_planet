@@ -44,10 +44,21 @@ post '/logout' do
   redirect '/login'
 end
 
+get '/posts' do
+  @posts = current_member.posts
+  erb :posts
+end
+
+post "/posts" do
+  current_member.posts.create(params[:post])
+  redirect '/posts'
+end
+
 get '/:id' do
   @members = Member.all
   erb :requests
 end
+
 
 helpers do 
   def title 
