@@ -56,7 +56,7 @@ describe 'friend request page' do
     expect(last_response.body).to_not include("#{member2.first_name}")
   end
 
-  it 'should show pending friendships' do
+  it "should show friendships you haven't accepted yet" do
   end
 end
 

@@ -1,7 +1,7 @@
 <% possible_friends = [] %>
-
+<% current_member = @members.find(params[:id]) %>
 <% @members.each do |member| %>
-  <% unless member.id == params[:id].to_i %> 
+  <% unless member.id == current_member.id || current_member.is_friend?(member) %> 
     <% possible_friends << member%>
   <% end %>
 <% end %>
