@@ -1,12 +1,20 @@
 <% possible_friends = [] %>
 <% current_member = @members.find(params[:id]) %>
 <% @members.each do |member| %>
-  <% unless member.id == current_member.id || current_member.is_friend?(member) %> 
-    <% possible_friends << member%>
+  <% unless member.id == current_member.id || current_member.in_friendship_table?(member) %> 
+
+    <% possible_friends << member %>
   <% end %>
 <% end %>
 
 
+<h1>Other members</h1>
 <% possible_friends.each do |friend| %>
-<%= friend.first_name %><br>
+<%= friend.first_name %> <%= friend.last_name %>
+<form action = "othermembers" method = "post">
+	<input type= "hidden" value = "<%=friend.id%>" name= "friend_id">
+	<input type ="submit" value= "Request friend">
+</form><br>
 <% end %>
+<a href="friends">Back to your friends</a>
+

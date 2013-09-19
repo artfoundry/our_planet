@@ -5,7 +5,7 @@ class Member < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :posts
 
-  def is_friend?(potential_friend)
+  def in_friendship_table?(potential_friend)
     a = Friendship.where('member_id =?', self.id)
     b = Friendship.where('friend_id =?', self.id)
     a.each do |friendship| 
@@ -16,7 +16,20 @@ class Member < ActiveRecord::Base
       return true if friendship.member_id == potential_friend.id
     end
     false
-  end
+  end  
+
+  def is_confirmed_friend?(potential_friend)
+    a = Friendship.where('member_id =?', self.id)
+    b = Friendship.where('friend_id =?', self.id)
+    a.each do |friendship| 
+      return true if (friendship.friend_id == potential_friend.id) && (friendship.accepted? == true)
+    end
+
+    b.each do |friendship|
+      return true if (friendship.member_id == potential_friend.id) && (friendship.accepted? == true)
+    end
+    false
+  end  
 
   def full_name
     "#{first_name} #{last_name}"
