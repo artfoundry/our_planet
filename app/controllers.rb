@@ -4,7 +4,6 @@ require_relative './config'
 enable :sessions
 
 get '/' do
-  session['member'] ||= nil
   erb :home
 end
 
