@@ -32,6 +32,11 @@ post '/login' do
   redirect '/home'
 end
 
+get '/:id' do
+  @members = Member.all
+  erb :requests
+end
+
 helpers do 
   def title 
     "Our Planet"
