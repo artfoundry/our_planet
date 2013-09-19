@@ -4,7 +4,7 @@ require_relative './config'
 enable :sessions
 
 get '/' do
-  session['username'] ||= nil
+  session['member'] ||= nil
   erb :home
 end
 
@@ -14,7 +14,7 @@ end
 
 post '/member/create' do
   member = Member.new(params)
-  session['username'] = "#{member.first_name} #{member.last_name}"
+  set_member_session(member)
   redirect '/member/new' unless member.errors.empty?
   redirect '/home'
 end
@@ -28,7 +28,8 @@ get '/home' do
 end
 
 post '/login' do
-  session['username'] = params[:email]
+  current_member = Member.find(email: params[:email])
+  set_member_session(current_member) if current_member
   redirect '/home'
 end
 
@@ -40,5 +41,9 @@ end
 helpers do 
   def title 
     "Our Planet"
+  end
+
+  def set_member_session(member)
+    session['member'] = member 
   end
 end
