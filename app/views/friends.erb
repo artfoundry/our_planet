@@ -14,7 +14,7 @@
   <% end %>
 <% end %>
 
-<h1>Confirmed friends</h1>
+<h1>Bruno Men you're friends with</h1>
 
 <% confirmed_friends.each do |friend| %>
 <a href="../<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a><br>
@@ -22,7 +22,7 @@
 
 <% pending_friends = pending_and_confirmed_friends - confirmed_friends %>
 
-<h1>Pending friends</h1>
+<h1>Pending Bruno Men</h1>
 
 <% pending_friends.each do |friend| %>
 <%= friend.first_name %> <%= friend.last_name %>
@@ -34,5 +34,5 @@
 </form>
 <br>
 <% end %>
-<a href="othermembers">Other members</a>
+<a href="othermembers">Other Bruno Men</a>
 <a href="/">Back to Home!!</a>
