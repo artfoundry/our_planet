@@ -50,7 +50,7 @@ post '/posts' do
   if current_member == member
     redirect '/'
   else
-    redirect "/users/#{member.id}/posts"
+    redirect "/user/#{member.id}/posts"
   end
 end
 
