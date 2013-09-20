@@ -5,7 +5,8 @@ enable :sessions
 
 get '/' do
   redirect '/login' unless current_member
-  
+  @name = current_member.full_name
+  @id = current_member.id
   @posts = current_member.posts
   erb :home
 end
@@ -58,6 +59,7 @@ end
 get '/user/:id/posts' do #show friend's posts
   redirect '/login' unless current_member
   friend = Member.find(params[:id])
+  @name = friend.full_name
   if current_member.is_confirmed_friend?(friend)
     @posts = friend.posts
   end

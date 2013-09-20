@@ -1,18 +1,25 @@
 <center><h1>OurPlanet&trade;</h1>
-  <%= "#{current_member.full_name}" %>
 
   <% if current_member %>
     <a href = "/logout">Log me out!</a>
   <% end %>
 
+   <% if current_member.id != @id %>
+    <a href = "/">Take me home!</a>
+  <% end %>
+
   <a href = "/user/<%= current_member.id %>/friends">View your friends</a>
   <a href = "/user/<%= current_member.id %>/othermembers">View other members</a>
+  
+  <h2><%= "#{@name}'s feed"%></h2>
 
+  <% if current_member.id == @i d %>
   <form action="/posts" method="POST">
     <input type="text" name="post[title]">
     <textarea name="post[text]" value="What are you thinking?" cols="30" rows="10"></textarea>
     <input type="submit">
   </form>
+  <% end %>
 
   <% unless @posts.empty? %>
     <ul>
@@ -24,4 +31,6 @@
       <% end %>
     </ul>
   <% end %>
+  <%= "logged in as #{current_member.full_name}" %>
 </center>
+
