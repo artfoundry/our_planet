@@ -64,6 +64,7 @@ end
 get '/user/:id/posts' do #show friend's posts
   redirect '/login' unless current_member
   friend = Member.find(params[:id])
+  redirect '/' if !current_member.is_confirmed_friend?(friend)
   @id = friend.id
   @name = friend.full_name
   if current_member.is_confirmed_friend?(friend)
