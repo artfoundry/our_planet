@@ -94,7 +94,7 @@ end
 
 helpers do 
   def title 
-    "Our Planet"
+    "Bruno's World"
   end
 
   def set_member_session(member_id)
