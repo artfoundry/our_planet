@@ -50,13 +50,18 @@ post '/logout' do
 end
 
 post '/posts' do
-  current_member.posts.create(params[:post])
-  redirect '/'
+  member = Member.find(params[:current_wall].to_i)
+  member.posts.create(params[:post])
+  if current_member == member
+    redirect '/'
+  else
+    redirect "/user/#{member.id}/posts"
+  end
 end
 
 get '/user/:id/othermembers' do #show all unfriended friends
   redirect '/login' unless current_member
-  
+  redirect '/' if current_member.id != params[:id].to_i
   @members = Member.all
   erb :requests
 end
@@ -64,6 +69,8 @@ end
 get '/user/:id/posts' do #show friend's posts
   redirect '/login' unless current_member
   friend = Member.find(params[:id])
+  redirect '/' if !current_member.is_confirmed_friend?(friend)
+  @id = friend.id
   @name = friend.full_name
   if current_member.is_confirmed_friend?(friend)
     @posts = friend.posts
@@ -78,16 +85,13 @@ end
 
 get '/user/:id/friends' do #show confirmed and pending friends
   redirect '/login' unless current_member
-
+   redirect '/' if current_member.id != params[:id].to_i
   @members = Member.all
   erb :friends
 end
 
 post '/user/:id/friends' do 
-  # friendship = Friendship.where(:member_id => params[:id], :friend_id => params[:friend_id]).take
-  # unless friendship != nil
-    friendship = Friendship.where(:member_id => params[:friend_id], :friend_id => params[:id]).take
-  # end
+  friendship = Friendship.where(:member_id => params[:friend_id], :friend_id => params[:id]).take
   friendship.update_attributes(:accepted? => "true")
   friendship.save
   redirect "/user/#{params[:id]}/friends"
@@ -95,7 +99,7 @@ end
 
 helpers do 
   def title 
-    "Our Planet"
+    "Bruno's World"
   end
 
   def set_member_session(member_id)
