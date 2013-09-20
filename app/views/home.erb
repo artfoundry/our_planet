@@ -1,4 +1,4 @@
-<center><h1>OurPlanet&trade;</h1>
+<center><h1>Bruno's World&trade;</h1>
 
   <% if current_member %>
     <a href = "/logout">Log me out!</a>
@@ -8,18 +8,18 @@
     <a href = "/">Take me home!</a>
   <% end %>
 
-  <a href = "/user/<%= current_member.id %>/friends">View your friends</a>
-  <a href = "/user/<%= current_member.id %>/othermembers">View other members</a>
+  <a href = "/user/<%= current_member.id %>/friends">View your Bruno Men Friends</a>
+  <a href = "/user/<%= current_member.id %>/othermembers">View other Bruno Men</a>
   
   <h2><%= "#{@name}'s feed"%></h2>
 
-  <% if current_member.id == @i d %>
   <form action="/posts" method="POST">
     <input type="text" name="post[title]">
     <textarea name="post[text]" value="What are you thinking?" cols="30" rows="10"></textarea>
+    <input type="hidden" name="current_wall" value="<%= @id %>">
+    <input type="hidden" name="post[author_id]" value="<%= current_member.id %>">
     <input type="submit">
   </form>
-  <% end %>
 
   <% unless @posts.empty? %>
     <ul>
@@ -27,10 +27,15 @@
         <li>
           <h3><%= post.title %></h3>
           <p><%= post.text %></p>
+          <p>by <a href="/user/<%= post.author_id %>/posts">
+            <%= Member.find(post.author_id).full_name %></a></p>
         </li>
       <% end %>
     </ul>
   <% end %>
-  <%= "logged in as #{current_member.full_name}" %>
+
+
+<%= "logged in as #{current_member.full_name}" %>
 </center>
+
 

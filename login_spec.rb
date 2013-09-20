@@ -10,7 +10,7 @@ def app
   Sinatra::Application
 end
 
-set :database, "sqlite3:///db/members.db"
+set :database, "sqlite3:///db/members_test.db"
 
 describe 'login process' do
 
