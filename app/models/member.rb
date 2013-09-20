@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :posts
 
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+
   def in_friendship_table?(potential_friend)
     a = Friendship.where('member_id =?', self.id)
     b = Friendship.where('friend_id =?', self.id)

@@ -1,4 +1,7 @@
 <h3> Login page</h3>
+<% if flash[:error] %>  
+    <p class="error"><%= flash[:error] %>  
+<% end %>  
 
 <form action="/login" method="post">
 

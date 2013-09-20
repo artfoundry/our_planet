@@ -13,7 +13,7 @@
   
   <h2><%= "#{@name}'s feed"%></h2>
 
-  <% if current_member.id == @i d %>
+  <% if current_member.id == @id %>
   <form action="/posts" method="POST">
     <input type="text" name="post[title]">
     <textarea name="post[text]" value="What are you thinking?" cols="30" rows="10"></textarea>
