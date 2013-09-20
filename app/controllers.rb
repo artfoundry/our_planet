@@ -4,6 +4,9 @@ require_relative './config'
 enable :sessions
 
 get '/' do
+  redirect '/login' unless current_member
+  
+  @posts = current_member.posts
   erb :home
 end
 
@@ -15,14 +18,10 @@ post '/member/create' do
   member = Member.create(params)
   if member
     set_member_session(member.id)
-    redirect '/home'
+    redirect '/'
   else
     redirect '/member/new'
   end
-end
-
-get '/home' do
-  erb :home
 end
 
 get '/login' do
@@ -32,7 +31,7 @@ end
 post '/login' do
   member = Member.find_by email: params[:email]
   set_member_session(member.id) if member
-  redirect '/home'
+  redirect '/'
 end
 
 get '/logout' do
@@ -44,17 +43,14 @@ post '/logout' do
   redirect '/login'
 end
 
-get '/posts' do
-  @posts = current_member.posts
-  erb :posts
-end
-
-post "/posts" do
+post '/posts' do
   current_member.posts.create(params[:post])
-  redirect '/posts'
+  redirect '/'
 end
 
 get '/user/:id/othermembers' do #show all unfriended friends
+  redirect '/login' unless current_member
+  
   @members = Member.all
   erb :requests
 end
@@ -65,6 +61,8 @@ post '/user/:id/othermembers' do
 end
 
 get '/user/:id/friends' do #show confirmed and pending friends
+  redirect '/login' unless current_member
+
   @members = Member.all
   erb :friends
 end
