@@ -17,7 +17,7 @@
 <h1>Confirmed friends</h1>
 
 <% confirmed_friends.each do |friend| %>
-<%= friend.first_name %> <%= friend.last_name %><br>
+<a href="../<%= friend.id %>/posts"><%= friend.first_name %> <%= friend.last_name %></a><br>
 <% end %>
 
 <% pending_friends = pending_and_confirmed_friends - confirmed_friends %>
