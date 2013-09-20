@@ -55,6 +55,15 @@ get '/user/:id/othermembers' do #show all unfriended friends
   erb :requests
 end
 
+get '/user/:id/posts' do #show friend's posts
+  redirect '/login' unless current_member
+  friend = Member.find(params[:id])
+  if current_member.is_confirmed_friend?(friend)
+    @posts = friend.posts
+  end
+  erb :home
+end
+
 post '/user/:id/othermembers' do
   Friendship.create(member_id: params[:id], friend_id: params[:friend_id], accepted?: false)
   redirect "/user/#{params[:id]}/othermembers"
