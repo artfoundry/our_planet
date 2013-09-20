@@ -1,8 +1,12 @@
 <center><h1>OurPlanet&trade;</h1>
   <%= "#{current_member.full_name}" %>
+
   <% if current_member %>
     <a href = "/logout">Log me out!</a>
   <% end %>
+
+  <a href = "/user/<%= current_member.id %>/friends">View your friends</a>
+  <a href = "/user/<%= current_member.id %>/othermembers">View other members</a>
 
   <form action="/posts" method="POST">
     <input type="text" name="post[title]">
