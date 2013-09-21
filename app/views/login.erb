@@ -2,6 +2,10 @@
 
   <h2>Welcome to Bruno's World&trade;!</h2>
 
+<% if flash[:error] %>  
+    <p class="error"><%= flash[:error] %>  
+<% end %>  
+
   <div id="login">
     <form action="/login" method="post">
 

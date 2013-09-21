@@ -31,8 +31,13 @@ end
 
 post '/login' do
   member = Member.find_by email: params[:email]
-  set_member_session(member.id) if member
-  redirect '/'
+  if member && member.password == params[:password]
+    set_member_session(member.id) 
+    redirect '/'
+  else
+    flash[:error] = 'invalid login'
+  end
+  redirect '/login'  
 end
 
 get '/logout' do
