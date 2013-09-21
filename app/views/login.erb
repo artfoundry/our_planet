@@ -1,14 +1,22 @@
-<h3> Login page</h3>
+<div id="landing">
 
-<form action="/login" method="post">
+  <h2>Welcome to Bruno's World&trade;!</h2>
 
-  <label for="email">Email:</label>
-  <input id="email" type="text" name="email"><br>
+  <div id="login">
+    <form action="/login" method="post">
 
-  <label for="password">Password:</label>
-  <input id="password" type="password" name="password"><br>
+      <label for="email">Email:</label>
+      <input id="email" type="text" name="email"><br>
 
-  <input type="submit" value="Login">
+      <label for="password">Password:</label>
+      <input id="password" type="password" name="password"><br>
+      
+      <p align=center>
+      <input id="submit" type="submit" value="Login">
+      </p>
 
-  <p>Don't have an account? <a href="/member/new">Become a Bruno Man</a></p>
-</form>
+      <p align=center>Don't have an account?<br>
+      <a href="/member/new">Become a Bruno Man</a></p>
+    </form>
+  </div>
+</div>
