@@ -1,5 +1,55 @@
 body {
-  background: url('http://planetthreesixty.com/sites/default/files/planet.jpg') no-repeat fixed center; 
   background-color: black;
   color: white;
+  margin:20;
+  padding:20;
+  font-family:"Trebuchet MS", Trebuchet, sans-serif;
+  text-align:center;
+}
+
+a:link {color:#9999FF;}    /* unvisited link */
+a:visited {color:#3366FF;} /* visited link */
+
+#landing
+{
+  background: url('/images/planet.jpg') no-repeat fixed center; 
+  height:1000px;
+}
+
+#main
+{
+  background: url('/images/planet_dim.jpg') no-repeat fixed center; 
+  height:1000px;
+  position:relative;
+}
+
+#login
+{
+  margin: 0 auto;
+  text-align:left;
+  width:300px;
+}
+
+#post
+{
+  margin: 0 auto;
+  text-align:left;
+  width:400px;
+}
+
+
+label
+{
+  display: block;
+  float: left;
+  width : 100px;    
+}
+
+#nav
+{
+  width:400px;
+  padding: 10px;
+  vertical-align: center;
+  border:2px solid gray;
+  background-color: #CCCCCC;
 }

@@ -1,3 +1,5 @@
+<div id="main">
+
 <% possible_friends = [] %>
 <% current_member = @members.find(params[:id]) %>
 <% @members.each do |member| %>
@@ -8,7 +10,7 @@
 <% end %>
 
 
-<h1>Other members</h1>
+<h2>Other Bruno Men</h2>
 <% possible_friends.each do |friend| %>
 <%= friend.first_name %> <%= friend.last_name %>
 <form action = "othermembers" method = "post">
@@ -18,3 +20,4 @@
 <% end %>
 <a href="friends">Back to your friends</a>
 
+</div>

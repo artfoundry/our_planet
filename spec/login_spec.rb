@@ -24,7 +24,7 @@ describe 'Login process' do
           :password => "noneed"
         }
         follow_redirect!
-        expect(last_response.body).to match /Login page/
+        expect(last_response.body).to match /Welcome/
     end
 
     it "does not set the session[:member_id]" do

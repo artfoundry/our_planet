@@ -1,41 +1,47 @@
-<center><h1>Bruno's World&trade;</h1>
-
-  <% if current_member %>
-    <a href = "/logout">Log me out!</a>
-  <% end %>
-
-   <% if current_member.id != @id %>
-    <a href = "/">Take me home!</a>
-  <% end %>
-
-  <a href = "/user/<%= current_member.id %>/friends">View your Bruno Men Friends</a>
-  <a href = "/user/<%= current_member.id %>/othermembers">View other Bruno Men</a>
-  
-  <h2><%= "#{@name}'s feed"%></h2>
-
-  <form action="/posts" method="POST">
-    <input type="text" name="post[title]">
-    <textarea name="post[text]" value="What are you thinking?" cols="30" rows="10"></textarea>
-    <input type="hidden" name="current_wall" value="<%= @id %>">
-    <input type="hidden" name="post[author_id]" value="<%= current_member.id %>">
-    <input type="submit">
-  </form>
-
-  <% unless @posts.empty? %>
-    <ul>
-      <% @posts.each do |post| %>
-        <li>
-          <h3><%= post.title %></h3>
-          <p><%= post.text %></p>
-          <p>by <a href="/user/<%= post.author_id %>/posts">
-            <%= Member.find(post.author_id).full_name %></a></p>
-        </li>
+<div id="main">
+  <center><h1>Bruno's World&trade;</h1>
+    <div id="nav">
+      <% if current_member.id != @id %>
+        <a href = "/">Take me home!</a>
       <% end %>
-    </ul>
-  <% end %>
+      <a href = "/user/<%= current_member.id %>/friends">View your Bruno Men Friends</a> |
+      <a href = "/user/<%= current_member.id %>/othermembers">View other Bruno Men</a>
+    </div>
+      <p>
+        <%= "logged in as #{current_member.full_name}" %>
+        <br>
+        <% if current_member %>
+          <a href = "/logout">Log me out!</a>
+        <% end %>
+      </p>
 
 
-<%= "logged in as #{current_member.full_name}" %>
-</center>
+    <h2><%= "#{@name}'s feed"%></h2>
+    <div id="post">
 
+      <form action="/posts" method="POST">
+        <label for="title">Subject:</label>
+        <input id="title" type="text" name="post[title]"><br>
+        <label for="text">What do you want to say?</label>
+        <textarea id="text" name="post[text]" value="What are you thinking?" cols="30" rows="10"></textarea><br>
+        <input type="hidden" name="current_wall" value="<%= @id %>">
+        <input type="hidden" name="post[author_id]" value="<%= current_member.id %>">
+        <p align=center>
+        <input type="submit" value="Post!">
+        </p>
+      </form>
+    </div>
 
+    <% unless @posts.empty? %>
+        <% @posts.each do |post| %>
+            <hr width=200>
+            <h3><%= post.title %></h3>
+            <p><%= post.text %></p>
+            <p>by <a href="/user/<%= post.author_id %>/posts">
+              <%= Member.find(post.author_id).full_name %></a></p>
+        <% end %>
+    <% end %>
+
+  </center>
+
+</div>
