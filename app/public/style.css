@@ -12,13 +12,13 @@ a:visited {color:#3366FF;} /* visited link */
 
 #landing
 {
-  background: url('http://planetthreesixty.com/sites/default/files/planet.jpg') no-repeat fixed center; 
+  background: url('/images/planet.jpg') no-repeat fixed center; 
   height:1000px;
 }
 
 #main
 {
-  background: url('http://farm8.staticflickr.com/7345/9846191296_92493e24fa_o.jpg') no-repeat fixed center; 
+  background: url('/images/planet_dim.jpg') no-repeat fixed center; 
   height:1000px;
   position:relative;
 }
